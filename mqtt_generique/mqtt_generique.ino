@@ -1,9 +1,10 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 
-// Replace the next variables with your SSID/Password combination
-const char* ssid = "vanille_iot";
-const char* password = "amv3NnuPnpVeTzPkjC";
+#include <config.h>
+// or
+//const char* ssid = "";
+//const char* password = "";
 
 const char* mqtt_server = "192.168.1.100";
 const int mqttPort = 1884; //port utilisé par le Broker 
@@ -87,6 +88,8 @@ void callback(char* topic, byte *payload, unsigned int length) {
    Serial.print("donnee:");
    Serial.write(payload, length);
    Serial.println();
+
+   
    if ((char)payload[0] == '1') {
      Serial.println("LED ON");
       digitalWrite(2,HIGH); 
